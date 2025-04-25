@@ -20,13 +20,9 @@ def parsing_text():
     return jsonify({"extracted_text": text})
 
 def process_image(image_bytes: bytes) -> str:
-    # Convert bytes to numpy array
     np_arr = np.frombuffer(image_bytes, np.uint8)
     image = cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
-
-    # Extract text using pytesseract
     text = pytesseract.image_to_string(image)
     return text
 
-if __name__ == "__main__":
-    app.run(debug=True)
+# ✅ DO NOT include app.run() here
